@@ -15,18 +15,31 @@
 <script>
 $(function() {
   for(var i = 0; i < recepies.length; i++) {
-var $recepieCard = $("<div class=card></div>");
-var $recepieCardContent = $("<div class=content></div>");
+var $recepieCard = $("<div class=card style=cursor:pointer></div>");
+var $recepieCardContent = $("<div class=content style=display:none;padding-top:0px;></div>");
 
 var $recepieImage = $("<img class=headerImg></img>").attr("src", recepies[i].img).height("100px");
-var $recepieName = $("<h1></h1>").text(recepies[i].name);
+var $recepieName = $("<h1 style=padding:16px;></h1>").text(recepies[i].name);
+var $recepieIngredients = $("<p></p>").text(recepies[i].ingredients[0]);
 
 
-$recepieCardContent.append($recepieName);
 
-$recepieCard.append($recepieImage, $recepieCardContent);
+$recepieCardContent.append($recepieIngredients);
+
+$recepieCard.append($recepieImage, $recepieName, $recepieCardContent);
+
+
+
+
 $("body").append($recepieCard);
   }
+
+  $("body").on('click', '.card', function()
+  {
+    $(this).children(".content").slideToggle(400, "swing");
+    $(this).children(".headerImg").animate({height:"500px"}, 500);
+
+  });
 });
 </script>
 </html>
