@@ -1,0 +1,29 @@
+var recepies = [
+ {
+ "name" : "Hveteboller",
+ "img" : "https://d1m0j39xrfg8wk.cloudfront.net/media/rc/1200x630/1455238496/boller-med-kardemomme.jpg",
+ "ingredients" : [
+   "6 dl melk",
+   "150 g smør",
+   "1 pk fersk gjær",
+   "1.5 dl sukker",
+   "2 ts malt kardemomme",
+   "1 kg hvetemel",
+   "1 stk sammenvispet egg til pensling"
+ ]
+},
+{
+"name" : "Brownies",
+"img" : "https://images.matprat.no/5das2kc3et-jumbotron/xsmall",
+"ingredients" : [
+  "200 g mørk sjokolade, 70% kakao",
+  "200 g smør",
+  "4 stk egg",
+  "3 dl sukker",
+  "4 dl hvetemel",
+  "1 ts bakepulver",
+  "2 dl grovhakkede valnøttkjerner (kan sløyfes)"
+]
+}
+
+ ]

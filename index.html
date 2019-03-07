@@ -1,20 +1,32 @@
 <html>
 <head>
+  <title>
+    Tittel
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" language="javascript" src="recepies.json"></script>
 </head>
-<style>
-.card {
-background:black;
-color:white;
-border-radius:10px;
-padding:16px
-}
-</style>
 <body>
-<div class="card">
-This is a card
-</div>
+
+
 </body>
 <script>
+$(function() {
+  for(var i = 0; i < recepies.length; i++) {
+var $recepieCard = $("<div class=card></div>");
+var $recepieCardContent = $("<div class=content></div>");
 
+var $recepieImage = $("<img class=headerImg></img>").attr("src", recepies[i].img).height("100px");
+var $recepieName = $("<h1></h1>").text(recepies[i].name);
+
+
+$recepieCardContent.append($recepieName);
+
+$recepieCard.append($recepieImage, $recepieCardContent);
+$("body").append($recepieCard);
+  }
+});
 </script>
 </html>
