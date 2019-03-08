@@ -1,44 +1,102 @@
 <html>
 <head>
   <title>
-    Tittel
+    Kokebok test
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" language="javascript" src="data/recepies.json"></script>
 </head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Muli:400,700,900');
+
+body{
+  background-color: #e0e0e0;
+margin:0px;
+}
+
+.card {
+-webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
+margin: 8px;
+font-family: Muli;
+background:white;
+color:black;
+border-radius:10px;
+padding:0px;
+}
+.card .content {
+  margin:0px;
+  padding:16px;
+}
+.card .headerImg {
+  width: 100%;
+border-radius: 10px 10px 0px 0px;
+object-fit: cover;
+}
+.card h1 {
+font-weight: 700;
+margin:0px;
+font-size: 24px;
+}
+
+.card p{
+  white-space: pre-line;
+  font-size: 16px;
+  font-weight: 400;
+  padding:0px;
+  margin:0px;
+}
+
+</style>
 <body>
 
 
 </body>
 <script>
+var recepiesURL = "https://raw.githubusercontent.com/magswag/KokeBokNett/master/data/recepies.json";
 $(function() {
+
+$.getJSON(recepiesURL, function(recepies) {
+
+
   for(var i = 0; i < recepies.length; i++) {
 var $recepieCard = $("<div class=card style=cursor:pointer></div>");
+$recepieCard.data({"opened":false});
 var $recepieCardContent = $("<div class=content style=display:none;padding-top:0px;></div>");
 
 var $recepieImage = $("<img class=headerImg></img>").attr("src", recepies[i].img).height("100px");
 var $recepieName = $("<h1 style=padding:16px;></h1>").text(recepies[i].name);
-var $recepieIngredients = $("<p></p>").text(recepies[i].ingredients[0]);
+var $recepieIngredientsHeader = $("<h1 style=font-size:20px;></h1>").text("Ingredienser:");
 
+var $recepieIngredients = $("<ul></ul>");
 
+for(var j = 0; j < recepies[i].ingredients.length; j++) {
+$newListElement = $("<li></li>").html(recepies[i].ingredients[j]);
 
-$recepieCardContent.append($recepieIngredients);
+$recepieIngredients.append($newListElement);
+}
+
+$recepieCardContent.append($recepieIngredientsHeader, $recepieIngredients);
 
 $recepieCard.append($recepieImage, $recepieName, $recepieCardContent);
-
-
-
 
 $("body").append($recepieCard);
   }
 
-  $("body").on('click', '.card', function()
-  {
-    $(this).children(".content").slideToggle(400, "swing");
-    $(this).children(".headerImg").animate({height:"500px"}, 500);
+  $("body").on('click', '.card', function() {
 
+   if($(this).data("opened") == false) {
+     $(this).data({"opened":true});
+	 $(this).children(".content").slideDown(500);
+	 $(this).children(".headerImg").animate({height:"300px"});
+   } else {
+     $(this).data({"opened":false});
+	 $(this).children(".content").slideUp(500);
+	 $(this).children(".headerImg").animate({height:"100px"});
+   }
+  });
+  
   });
 });
 </script>
