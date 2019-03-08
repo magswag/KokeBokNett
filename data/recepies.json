@@ -1,4 +1,4 @@
-var recepies = [
+[
  {
  "name" : "Hveteboller",
  "img" : "https://d1m0j39xrfg8wk.cloudfront.net/media/rc/1200x630/1455238496/boller-med-kardemomme.jpg",
@@ -23,6 +23,36 @@ var recepies = [
   "4 dl hvetemel",
   "1 ts bakepulver",
   "2 dl grovhakkede valnøttkjerner (kan sløyfes)"
+]
+},
+{
+"name" : "Pizza",
+"img" : "https://images.matprat.no/24ht582q7u-jumbotron/xsmall",
+"ingredients" : [
+  "400 g kjøttdeig",
+  "2 ss olje",
+  "1 stk hakket løk",
+  "2 båt finhakket hvitløk",
+  "2 ss tomatpuré",
+  "1 boks hakkede hermetiske tomater",
+  "ca. 1 dl vann",
+  "1.5 ts pepper",
+  "1.5 ts salt",
+  "1 ss basilikum eller 1 ts tørket",
+  "3 dl lunkent vann",
+  "1.5 pakke fersk gjær",
+  "2 ss olje",
+  "1.5 ts salt",
+  "1 ss frisk basilikum eller 1 ts tørket",
+  "3 dl lunkent vann",
+  "1.5 pakke fersk gjær",
+  "2 ss olje",
+  "1.5 ts salt",
+  "ca. 7 dl hvetemel",
+  "300 g revet hvitost",
+  "1 stk rød paprika, i terninger",
+  "2 ss frisk oregano, i ringer"
+  
 ]
 }
 
