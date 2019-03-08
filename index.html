@@ -4,6 +4,8 @@
     Kokebok test
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 <style>
@@ -15,6 +17,8 @@ margin:0px;
 }
 
 .card {
+  flex-direction: column;
+  display:flex;
 -webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
 -moz-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
 box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.5);
@@ -40,7 +44,7 @@ margin:0px;
 font-size: 24px;
 }
 
-.card p{
+.card p {
   white-space: pre-line;
   font-size: 16px;
   font-weight: 400;
@@ -48,9 +52,21 @@ font-size: 24px;
   margin:0px;
 }
 
+.iconButton {
+  cursor: pointer;
+  border:0;
+  border-radius: 50%;
+  background:none;
+  outline: none;
+  height:36px;
+  width:36px;
+}
+.iconButton:hover {
+  background: grey;
+}
+
 </style>
 <body>
-
 
 </body>
 <script>
@@ -59,44 +75,49 @@ $(function() {
 
 $.getJSON(recepiesURL, function(recepies) {
 
-
   for(var i = 0; i < recepies.length; i++) {
-var $recepieCard = $("<div class=card style=cursor:pointer></div>");
-$recepieCard.data({"opened":false});
-var $recepieCardContent = $("<div class=content style=display:none;padding-top:0px;></div>");
+var recepieCard = $("<div class=card style=cursor:pointer></div>");
+recepieCard.data({"opened":false});
+var recepieCardContent = $("<div class=content style=display:none;padding-top:0px;></div>");
 
-var $recepieImage = $("<img class=headerImg></img>").attr("src", recepies[i].img).height("100px");
-var $recepieName = $("<h1 style=padding:16px;></h1>").text(recepies[i].name);
-var $recepieIngredientsHeader = $("<h1 style=font-size:20px;></h1>").text("Ingredienser:");
+var recepieImage = $("<img class=headerImg></img>").attr("src", recepies[i].img).height("100px");
+var recepieName = $("<h1 style=align-self:flex-start;></h1>").text(recepies[i].name);
+var recepieIngredientsHeader = $("<h1 style=font-size:20px;></h1>").text("Ingredienser:");
+var expandButton = $("<button class=iconButton style=margin-left:auto;></button>").html("<i class=material-icons>expand_more</i>");
+var nameAndExpandButtonContainer = $("<div style=display:flex;padding:16px;></div>");
 
-var $recepieIngredients = $("<ul></ul>");
+nameAndExpandButtonContainer.append(recepieName, expandButton);
+
+var recepieIngredients = $("<ul></ul>");
 
 for(var j = 0; j < recepies[i].ingredients.length; j++) {
-$newListElement = $("<li></li>").html(recepies[i].ingredients[j]);
+newListElement = $("<li></li>").html(recepies[i].ingredients[j]);
 
-$recepieIngredients.append($newListElement);
+recepieIngredients.append(newListElement);
 }
 
-$recepieCardContent.append($recepieIngredientsHeader, $recepieIngredients);
+recepieCardContent.append(recepieIngredientsHeader, recepieIngredients);
 
-$recepieCard.append($recepieImage, $recepieName, $recepieCardContent);
+recepieCard.append(recepieImage, nameAndExpandButtonContainer, recepieCardContent);
 
-$("body").append($recepieCard);
+$("body").append(recepieCard);
   }
 
-  $("body").on('click', '.card', function() {
+  $("body").on('click', ".card", function() {
+
 
    if($(this).data("opened") == false) {
      $(this).data({"opened":true});
-	 $(this).children(".content").slideDown(500);
-	 $(this).children(".headerImg").animate({height:"300px"});
+	 $(this).children(".content").slideDown(300, "swing");
+	 $(this).children(".headerImg").animate({height:"300px"}, 300, "swing");
    } else {
      $(this).data({"opened":false});
-	 $(this).children(".content").slideUp(500);
-	 $(this).children(".headerImg").animate({height:"100px"});
+	 $(this).children(".content").slideUp(250, "swing");
+	 $(this).children(".headerImg").animate({height:"100px"}, 250, "swing");
    }
+
   });
-  
+
   });
 });
 </script>
