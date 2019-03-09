@@ -70,37 +70,38 @@ font-size: 24px;
 
 </body>
 <script>
-var recepiesURL = "https://raw.githubusercontent.com/magswag/KokeBokNett/master/data/recepies.json";
+var recipesURL = "https://raw.githubusercontent.com/magswag/KokeBokNett/master/data/recipes.json";
 $(function() {
 
-$.getJSON(recepiesURL, function(recepies) {
+$.getJSON(recipesURL, function(result) {
+  recipes = result.recipes;
 
-  for(var i = 0; i < recepies.length; i++) {
-var recepieCard = $("<div class=card style=cursor:pointer></div>");
-recepieCard.data({"opened":false});
-var recepieCardContent = $("<div class=content style=display:none;padding-top:0px;></div>");
+  for(var i = 0; i < recipes.length; i++) {
+var recipeCard = $("<div class=card style=cursor:pointer></div>");
+recipeCard.data({"opened":false});
+var recipeCardContent = $("<div class=content style=display:none;padding-top:0px;></div>");
 
-var recepieImage = $("<img class=headerImg></img>").attr("src", recepies[i].img).height("100px");
-var recepieName = $("<h1 style=align-self:flex-start;></h1>").text(recepies[i].name);
-var recepieIngredientsHeader = $("<h1 style=font-size:20px;></h1>").text("Ingredienser:");
+var recipeImage = $("<img class=headerImg></img>").attr("src", recipes[i].img).height("100px");
+var recipeName = $("<h1 style=align-self:flex-start;></h1>").text(recipes[i].name);
+var recipeIngredientsHeader = $("<h1 style=font-size:20px;></h1>").text("Ingredienser:");
 var expandButton = $("<button class=iconButton style=margin-left:auto;></button>").html("<i class=material-icons>expand_more</i>");
 var nameAndExpandButtonContainer = $("<div style=display:flex;padding:16px;></div>");
 
-nameAndExpandButtonContainer.append(recepieName, expandButton);
+nameAndExpandButtonContainer.append(recipeName, expandButton);
 
-var recepieIngredients = $("<ul></ul>");
+var recipeIngredients = $("<ul></ul>");
 
-for(var j = 0; j < recepies[i].ingredients.length; j++) {
-newListElement = $("<li></li>").html(recepies[i].ingredients[j]);
+for(var j = 0; j < recipes[i].ingredients.length; j++) {
+newListElement = $("<li></li>").html(recipes[i].ingredients[j]);
 
-recepieIngredients.append(newListElement);
+recipeIngredients.append(newListElement);
 }
 
-recepieCardContent.append(recepieIngredientsHeader, recepieIngredients);
+recipeCardContent.append(recipeIngredientsHeader, recipeIngredients);
 
-recepieCard.append(recepieImage, nameAndExpandButtonContainer, recepieCardContent);
+recipeCard.append(recipeImage, nameAndExpandButtonContainer, recipeCardContent);
 
-$("body").append(recepieCard);
+$("body").append(recipeCard);
   }
 
   $("body").on('click', ".card", function() {
